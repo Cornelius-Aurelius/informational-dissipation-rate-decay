@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Informational Dissipation-Rate Decay — Cornelius Aurelius</title>
+
+<meta name="description" content="A scientific exploration of dissipation-rate decay in informational fields. Demonstrations of energy decay, smoothing processes, and decreasing dissipation rates under Laplacian evolution. Includes public-facing explanation, computational verification, thought experiments, and peer review links.">
+<meta name="theme-color" content="#00c8ff">
+<meta name="author" content="Cornelius Aurelius">
+
+<style>
+/* GLOBAL THEME — BLACK + NEON BLUE */
+body {
+  margin: 0;
+  background: #000;
+  color: #9ee7ff;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* HEADER */
+header {
+  text-align: center;
+  padding: 70px 20px;
+  background: radial-gradient(circle at center, #002033, #000);
+  border-bottom: 2px solid #00c8ff;
+}
+header h1 {
+  font-size: 2.8rem;
+  color: #00c8ff;
+  margin: 0;
+  text-shadow: 0 0 28px #00c8ff;
+  animation: glowPulse 3.5s infinite ease-in-out;
+}
+@keyframes glowPulse {
+  0%   { text-shadow: 0 0 20px #00c8ff; }
+  50%  { text-shadow: 0 0 42px #33e8ff; }
+  100% { text-shadow: 0 0 20px #00c8ff; }
+}
+
+/* SECTIONS */
+section {
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 20px;
+  line-height: 1.7;
+}
+h2 {
+  font-size: 1.9rem;
+  color: #00c8ff;
+  text-shadow: 0 0 10px #008fbf;
+  margin-bottom: 20px;
+}
+p, li {
+  font-size: 1.18rem;
+}
+
+/* CODE BLOCK */
+.code-block {
+  background: #00141f;
+  padding: 22px;
+  border-radius: 10px;
+  border: 1px solid #00c8ff55;
+  color: #b1eaff;
+  white-space: pre-wrap;
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+/* BOXES */
+.thoughtbox {
+  background: #001622;
+  border-left: 5px solid #00c8ff;
+  padding: 22px;
+  margin: 30px 0;
+  border-radius: 8px;
+}
+.factbox {
+  background: #002035;
+  border: 1px solid #00c8ff55;
+  border-radius: 10px;
+  padding: 25px;
+  margin-top: 40px;
+  box-shadow: 0 0 28px #00c8ff33 inset;
+}
+
+/* BUTTON */
+a.button {
+  display: inline-block;
+  padding: 14px 24px;
+  background: #003a5c;
+  border-radius: 8px;
+  border: 1px solid #00c8ff;
+  color: #9ee7ff;
+  text-decoration: none;
+  margin: 8px 12px 0 0;
+  transition: 0.3s;
+}
+a.button:hover { background: #005a8c; }
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 45px;
+  background: #000814;
+  border-top: 2px solid #00c8ff;
+  margin-top: 60px;
+}
+footer a {
+  color: #00c8ff;
+  margin: 0 10px;
+  text-decoration: none;
+}
+footer a:hover { text-decoration: underline; }
+
+/* MOBILE */
+@media(max-width:600px){
+  header h1 { font-size: 2.3rem; }
+  h2 { font-size: 1.6rem; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Informational Dissipation-Rate Decay</h1>
+  <p style="font-size:1.2rem;color:#9ee7ff;">A Scientific Analysis</p>
+</header>
+
+<section>
+  <h2>Overview</h2>
+
+  <p>
+    When an informational field evolves under smoothing dynamics, its internal curvature-based
+    energy tends to decrease. Beyond the decrease in energy itself, the <b>rate at which energy is lost</b>
+    — the dissipation rate — also exhibits a consistent downward trend.
+  </p>
+
+  <p style="font-size:1.3rem;text-align:center;color:#00c8ff;">
+    <b>The dissipation rate decreases over time, reflecting reduced tension and reduced curvature in the system.</b>
+  </p>
+
+  <p>
+    This principle appears in diffusion physics, signal smoothing, numerical PDEs,
+    and informational geometry models where curvature influences how quickly a field flattens.
+  </p>
+</section>
+
+<section>
+  <h2>Computational Experiment</h2>
+  <p>
+    The following code initializes a multi-frequency informational field,
+    computes its curvature-based energy, and then tracks how the dissipation rate
+    changes under Laplacian evolution.
+  </p>
+
+  <div class="code-block">
+<pre>
+N = 600
+x = np.linspace(0, 1, N)
+A = np.sin(10πx) + 0.4 sin(30πx) + noise
+
+def lap(A): return roll(A,-1) - 2A + roll(A,1)
+def sec_energy(A): return sum(lap(A)²)
+
+alpha = 0.12
+A_evo = A.copy()
+
+E = [sec_energy(A)]
+for step in range(300):
+    A_evo = A_evo + alpha * lap(A_evo)
+    E.append(sec_energy(A_evo))
+
+D = E[:-1] - E[1:]
+# Dissipation rate decreases over time.
+</pre>
+  </div>
+
+  <p>
+    The resulting dissipation-rate curve displays a clear downward trajectory,
+    indicating progressive reduction in curvature-driven energy loss.  
+    (Source file: :contentReference[oaicite:1]{index=1})
+  </p>
+</section>
+
+<section>
+  <h2>Thought Experiments</h2>
+
+  <div class="thoughtbox">
+    <b>Cooling Metal Plate</b><br><br>
+    A hot metal surface initially cools rapidly.
+    As temperature gradients flatten out, cooling slows —
+    mirroring dissipation-rate decay.
+  </div>
+
+  <div class="thoughtbox">
+    <b>Turbulent Water Becoming Still</b><br><br>
+    High turbulence dissipates energy quickly.  
+    As motion smooths out, dissipation slows dramatically.
+  </div>
+
+  <div class="thoughtbox">
+    <b>Brain Activity Settling After Stimulus</b><br><br>
+    An intense burst of neural oscillations dampens rapidly,  
+    then the residual activity fades slowly — a natural dissipation-rate curve.
+  </div>
+</section>
+
+<section>
+  <h2>Scientific Interpretation</h2>
+
+  <ul>
+    <li>Dissipation is proportional to differences in curvature energy across steps.</li>
+    <li>As the field smooths, curvature decreases → dissipation rate must decline.</li>
+    <li>Laplacian smoothing reduces high-frequency curvature first, slowing the decay over time.</li>
+    <li>This establishes a clear relationship between curvature, diffusion, and energy loss.</li>
+  </ul>
+
+  <div class="factbox">
+    <h3 style="color:#00c8ff;margin-top:0;">Advanced Insight</h3>
+
+    <p>
+      In continuous form, curvature-energy dissipation is linked to:
+      <br><br>
+      <code>dE/dt = - ∫ (∂x²A)² dx</code>,  
+      ensuring that <b>dE/dt increases toward zero</b>.
+    </p>
+
+    <p>
+      The dissipation-rate decay curve is a discrete analogue of this behavior.
+      It reflects the stabilizing nature of fourth-order and second-order diffusion
+      in smoothing complex informational fields.
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2>Peer Review</h2>
+  <p>
+    Contributions, analytical proofs, or extensions to multidimensional fields
+    can be submitted through the following channels:
+  </p>
+
+  <a class="button" href="mailto:138licensing@gmail.com">Submit via Email</a>
+  <a class="button" href="https://zenodo.org/records/17362534" target="_blank">Submit via Zenodo</a>
+</section>
+
+<footer>
+  <p>© Cornelius Aurelius</p>
+  <p>
+    <a href="https://corneliusaurelius.com/">Website</a> |
+    <a href="mailto:138licensing@gmail.com">Email</a> |
+    <a href="https://medium.com/@138licensing">Medium</a> |
+    <a href="https://zenodo.org/records/17362534">Zenodo</a> |
+    <a href="https://www.instagram.com/cornelius_aurelius_/">Instagram</a> |
+    <a href="https://www.linkedin.com/in/cornelius-aurelius-404805325/recent-activity/all/">LinkedIn</a>
+  </p>
+</footer>
+
+</body>
+</html>
